@@ -45,7 +45,7 @@ module.exports = {
           .setFooter({ text: "Lirik disediakan oleh Genius", iconURL: "https://images.rapgenius.com/7273cea03410fecfd11f3703cf546b78.750x750x1.gif" })
       } else {
         // Song not found
-        embed.setTitle("(｡•́︿•̀｡)").setDescription("Yaah, lirik tidak diemukan.").setColor("#eade58")
+        embed.setTitle("(｡•́︿•̀｡)").setDescription("Yaah, lirik tidak ditemukan.").setColor("#eade58")
       }
 
       await interaction.editReply({ embeds: [embed] })
