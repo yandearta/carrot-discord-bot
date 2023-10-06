@@ -25,17 +25,17 @@ module.exports = {
       if (!data.message) {
         let description = "";
 
-        if (data.bio) description += `${data.bio}`;
+        if (data.bio) description += `${data.bio}\n\n`;
         if (data.twitter_username)
-          description += `\n\n🐦 @${data.twitter_username}`;
-        if (data.blog) description += `\n🌐 ${data.blog}`;
-        if (data.location) description += `\n📍 ${data.location}`;
+          description += `🐦 @${data.twitter_username}\n`;
+        if (data.blog) description += `🌐 ${data.blog}\n`;
+        if (data.location) description += `📍 ${data.location}\n\n`;
 
-        description += `\n\n\`Followers: ${formatNumber(
+        description += `\`Followers: ${formatNumber(
           data.followers
-        )}\` \`Following: ${formatNumber(data.following)}\``;
+        )}\` \`Following: ${formatNumber(data.following)}\`\n`;
 
-        description += `\n\`Public Repos: ${formatNumber(
+        description += `\`Public Repos: ${formatNumber(
           data.public_repos
         )}\` \`Public Gists: ${formatNumber(data.public_gists)}\``;
 
