@@ -41,7 +41,7 @@ module.exports = {
 
         embed
           .setTitle(data.name ?? data.login)
-          .setURL(data.url)
+          .setURL(data.html_url)
           .setDescription(description)
           .setColor("#22272e")
           .setThumbnail(data.avatar_url)
