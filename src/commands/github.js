@@ -51,7 +51,6 @@ module.exports = {
             iconURL: "https://carrot.afkteam.dev/assets/github-mark-white.png",
           });
       } else {
-        // Song not found
         embed
           .setTitle("(｡•́︿•̀｡)")
           .setDescription("Yaah, user tidak ditemukan.")
@@ -60,7 +59,6 @@ module.exports = {
 
       await interaction.editReply({ embeds: [embed] });
     } catch (error) {
-      // Error
       embed
         .setTitle("(×_×)")
         .setDescription(
