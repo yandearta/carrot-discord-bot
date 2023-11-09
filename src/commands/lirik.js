@@ -51,7 +51,7 @@ module.exports = {
       await interaction.editReply({ embeds: [embed] })
     } catch (error) {
       // Error
-      embed.setTitle("(×_×)").setDescription("Maaf, ada kesalahan. Tampaknya Carrot sedang lelah, coba lagi nanti ya.").setColor("#eade58")
+      embed.setTitle("(×_×)").setDescription("Maaf, ada kesalahan. Tampaknya Carrot sedang lelah, coba lagi nanti ya.").setColor("#f44336")
 
       await interaction.editReply({ embeds: [embed] })
       console.log(error)

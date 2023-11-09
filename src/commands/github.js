@@ -64,7 +64,7 @@ module.exports = {
         .setDescription(
           "Maaf, ada kesalahan. Tampaknya Carrot sedang lelah, coba lagi nanti ya."
         )
-        .setColor("#eade58");
+        .setColor("#f44336");
 
       await interaction.editReply({ embeds: [embed] });
       console.log(error);
