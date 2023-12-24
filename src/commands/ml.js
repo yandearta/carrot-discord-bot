@@ -43,7 +43,10 @@ module.exports = {
         embed
           .setTitle("Sukses!")
           .addFields(
-            { name: "Username", value: data.result.username },
+            {
+              name: "Username",
+              value: decodeURIComponent(data.result.username),
+            },
             { name: "User ID", value: userId, inline: true },
             { name: "Zone ID", value: zoneId, inline: true }
           )
