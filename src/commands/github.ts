@@ -59,7 +59,7 @@ export async function run({ interaction }: SlashCommandProps) {
         .setTimestamp()
         .setFooter({
           text: "Data disediakan oleh GitHub",
-          iconURL: "https://carrot.afkteam.dev/assets/github-mark-white.png",
+          iconURL: "https://carrot.afkteam.dev/github-mark-white.png",
         });
     } else {
       embed
