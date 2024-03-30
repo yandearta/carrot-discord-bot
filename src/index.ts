@@ -19,8 +19,8 @@ new CommandKit({
   client,
   devGuildIds: [],
   devRoleIds: [],
-  eventsPath: `${__dirname}/events`,
   commandsPath: `${__dirname}/commands`,
+  eventsPath: `${__dirname}/events`,
   bulkRegister: true,
 });
 
