@@ -1,5 +1,8 @@
-import { SlashCommandBuilder } from "discord.js";
+import { EmbedBuilder, SlashCommandBuilder } from "discord.js";
 import type { SlashCommandProps } from "commandkit";
+
+import { errorEmbed } from "@/utils/statusEmbed";
+import formatNumber from "@/utils/formatNumber";
 
 export const data = new SlashCommandBuilder()
   .setName("pilih")
@@ -21,26 +24,33 @@ export async function run({ interaction }: SlashCommandProps) {
   const uniqueChoices = [...new Set(choicesFmt)];
 
   if (uniqueChoices.length < 2) {
-    return await interaction.reply("Berikan setidaknya `2 opsi`!");
+    return await interaction.reply({
+      embeds: [errorEmbed("Berikan setidaknya 2 opsi!")],
+    });
   }
 
-  const pickedChoice =
-    uniqueChoices[Math.floor(Math.random() * uniqueChoices.length)];
+  const pickedChoiceIndex = Math.floor(Math.random() * uniqueChoices.length);
+  const pickedChoice = uniqueChoices[pickedChoiceIndex];
+
+  const choicesDisplay = uniqueChoices
+    .map((choice, i) => `${formatNumber(i)}. ${choice}`)
+    .join("\n");
 
   const pickedChoiceFmt =
     pickedChoice.startsWith("<@") && pickedChoice.endsWith(">")
       ? pickedChoice
-      : `\`${pickedChoice}\``;
+      : `**${pickedChoice}**`;
 
-  const optionsText = uniqueChoices
-    .map((choice) =>
-      choice.startsWith("<@") && choice.endsWith(">") ? choice : `\`${choice}\``
-    )
-    .join(", ")
-    // Replace the last comma with a ampersand
-    .replace(/,\s([^,]+)$/, " & $1");
+  const descriptipn = `
+      Dari ${uniqueChoices.length} opsi:\n
+      ${choicesDisplay}\n
+      Aku memilih no ${formatNumber(pickedChoiceIndex + 1)}: ${pickedChoiceFmt}!
+`;
 
-  const replyText = `Dari opsi ${optionsText}, aku memilih ${pickedChoiceFmt}!`;
+  const embed = new EmbedBuilder()
+    .setTitle("Pemilih Acak!")
+    .setThumbnail("https://carrot.afkteam.dev/dice.png")
+    .setDescription(descriptipn);
 
-  await interaction.reply(replyText);
+  await interaction.reply({ embeds: [embed] });
 }
