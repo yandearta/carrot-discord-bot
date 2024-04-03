@@ -15,7 +15,7 @@ const client = new Client({
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-new CommandKit({
+export const kit = new CommandKit({
   client,
   devGuildIds: [],
   devRoleIds: [],
