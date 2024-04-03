@@ -32,39 +32,52 @@ export async function run({ interaction }: SlashCommandProps) {
 
   if (uniqueChoices.length < 2) {
     return await interaction.editReply({
-      embeds: [errorEmbed("Berikan setidaknya 2 opsi!")],
+      embeds: [errorEmbed("Berikan setidaknya 2 opsi unik!")],
     });
   }
 
-  const reshuffleButton = new ButtonKit()
-    .setCustomId(`reshuffle`)
-    .setLabel("🔄️ Acak Ulang")
-    .setStyle(ButtonStyle.Primary);
+  let shuffled = 0;
+  const [reshuffleButton, shuffledButton] = createButtons(shuffled);
 
-  const row = new ActionRowBuilder<ButtonKit>().addComponents(reshuffleButton);
+  const row = new ActionRowBuilder<ButtonKit>().addComponents(
+    reshuffleButton,
+    shuffledButton
+  );
 
   await sendResults(uniqueChoices, interaction, row);
 
-  reshuffleButton
-    .onClick(
-      async (buttonInteraction) => {
-        await buttonInteraction.deferUpdate();
-        await sendResults(uniqueChoices, interaction, row, true);
-      },
-      { message, time: 10 * 60 * 1000 }
-    ) // 10 minutes
-    .onEnd(() => {
-      reshuffleButton.setDisabled();
-      const channel = interaction.guild?.channels.cache.get(message.channelId);
-      if (channel) message.edit({ components: [row] }); // Prevent error when the channel is not found
-    });
+  reshuffleButton.onClick(
+    async (buttonInteraction) => {
+      await buttonInteraction.deferUpdate();
+
+      if (buttonInteraction.user.id !== interaction.user.id) {
+        const message = await buttonInteraction.followUp(
+          `<@${buttonInteraction.user.id}>, Hanya user yang menjalankan command ini yang diizinkan untuk mengacak ulang pilihan!`
+        );
+
+        setTimeout(async () => await message.delete(), 5000);
+        return;
+      }
+
+      shuffled++;
+      await sendResults(uniqueChoices, interaction, row, true, shuffled);
+    },
+    { message, time: 10 * 60 * 1000 } // 10 minutes
+  );
+
+  reshuffleButton.onEnd(() => {
+    reshuffleButton.setDisabled();
+    const channel = interaction.guild?.channels.cache.get(message.channelId);
+    if (channel) message.edit({ components: [row] }); // Prevent error when the channel is not found
+  });
 }
 
 async function sendResults(
   uniqueChoices: string[],
   interaction: SlashCommandProps["interaction"],
   row: ActionRowBuilder<ButtonKit>,
-  isReshuffle = false
+  isReshuffle = false,
+  shuffled = 0
 ) {
   const pickedChoiceIndex = Math.floor(Math.random() * uniqueChoices.length);
   const pickedChoice = uniqueChoices[pickedChoiceIndex];
@@ -94,10 +107,27 @@ async function sendResults(
       embeds: [new EmbedBuilder().setDescription("Mengacak ulang...")],
     });
 
+    // Wait for 0.5 seconds before sending the results
     setTimeout(async () => {
+      row.setComponents(createButtons(shuffled));
       await sendResults(uniqueChoices, interaction, row);
-    }, 500); // Wait for 0.5 seconds before sending the results
+    }, 500);
   } else {
     await interaction.editReply({ embeds: [embed], components: [row] });
   }
+}
+
+function createButtons(shuffled: number) {
+  const reshuffleButton = new ButtonKit()
+    .setCustomId("reshuffle")
+    .setLabel("🔄️ Acak Ulang")
+    .setStyle(ButtonStyle.Primary);
+
+  const shuffledButton = new ButtonKit()
+    .setCustomId("shuffled")
+    .setLabel(`Diacak: ${formatNumber(shuffled)}x`)
+    .setStyle(ButtonStyle.Primary)
+    .setDisabled(true);
+
+  return [reshuffleButton, shuffledButton];
 }
