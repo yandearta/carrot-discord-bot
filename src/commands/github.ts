@@ -59,7 +59,8 @@ export async function run({ interaction }: SlashCommandProps) {
         .setTimestamp()
         .setFooter({
           text: "Data disediakan oleh GitHub",
-          iconURL: "https://carrot.afkteam.dev/github-mark-white.png",
+          iconURL:
+            "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/github-mark-white.png",
         });
     } else {
       embed

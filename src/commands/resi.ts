@@ -85,11 +85,14 @@ export async function run({ interaction }: SlashCommandProps) {
       .setTitle("Cek Resi SiCepat")
       .setDescription(description)
       .setColor("#d5232b")
-      .setThumbnail("https://carrot.afkteam.dev/sicepat-logo-red.png")
+      .setThumbnail(
+        "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/sicepat-logo-red.png"
+      )
       .setTimestamp()
       .setFooter({
         text: "Data disediakan oleh SiCepat",
-        iconURL: "https://carrot.afkteam.dev/sicepat-logo-red.png",
+        iconURL:
+          "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/sicepat-logo-red.png",
       });
 
     await interaction.deleteReply();

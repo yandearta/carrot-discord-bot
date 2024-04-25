@@ -99,7 +99,9 @@ async function sendResults(
 
   const embed = new EmbedBuilder()
     .setTitle("Pemilih Acak!")
-    .setThumbnail("https://carrot.afkteam.dev/dice.png")
+    .setThumbnail(
+      "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/dice.png"
+    )
     .setDescription(description);
 
   if (isReshuffle) {

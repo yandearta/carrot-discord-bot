@@ -57,11 +57,14 @@ export async function run({ interaction }: SlashCommandProps) {
           { name: "Zone ID", value: zoneId, inline: true }
         )
         .setColor("#4caf4f")
-        .setThumbnail("https://carrot.afkteam.dev/mobile-legends.jpg")
+        .setThumbnail(
+          "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/mobile-legends.jpg"
+        )
         .setTimestamp()
         .setFooter({
           text: "Data disediakan oleh Mobile Legends",
-          iconURL: "https://carrot.afkteam.dev/mobile-legends.jpg",
+          iconURL:
+            "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/mobile-legends.jpg",
         });
     } else {
       embed
