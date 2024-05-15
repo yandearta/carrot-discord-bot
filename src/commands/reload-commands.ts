@@ -3,18 +3,17 @@ import type { CommandOptions, SlashCommandProps } from "commandkit";
 
 import { successEmbed, errorEmbed } from "@/utils/statusEmbed";
 import logger from "@/utils/logger";
-import { kit } from "..";
 
 export const data = new SlashCommandBuilder()
   .setName("reload-commands")
   .setDescription("Reload semua command")
   .setDMPermission(false);
 
-export async function run({ interaction }: SlashCommandProps) {
+export async function run({ interaction, handler }: SlashCommandProps) {
   await interaction.deferReply({ ephemeral: !!interaction.guildId });
 
   try {
-    await kit.reloadCommands();
+    await handler.reloadCommands();
 
     interaction.editReply({
       embeds: [successEmbed("Berhasil reload semua command.")],
