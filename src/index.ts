@@ -17,8 +17,6 @@ const __dirname = path.dirname(__filename);
 
 export const kit = new CommandKit({
   client,
-  devGuildIds: [],
-  devRoleIds: [],
   commandsPath: `${__dirname}/commands`,
   eventsPath: `${__dirname}/events`,
   bulkRegister: true,
