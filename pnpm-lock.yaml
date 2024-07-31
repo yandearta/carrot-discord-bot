@@ -20,6 +20,9 @@ importers:
       discord.js:
         specifier: ^14.14.1
         version: 14.14.1
+      envalid:
+        specifier: ^8.0.0
+        version: 8.0.0
       extensionless:
         specifier: ^1.9.6
         version: 1.9.6
@@ -632,6 +635,10 @@ packages:
   entities@4.5.0:
     resolution: {integrity: sha512-V0hjH4dGPh9Ao5p0MoRY6BVqtwCjhz6vI5LT8AJ55H+4g9/4vbHx1I54fS0XuclLhDHArPQCiMjDxjaL8fPxhw==}
     engines: {node: '>=0.12'}
+
+  envalid@8.0.0:
+    resolution: {integrity: sha512-PGeYJnJB5naN0ME6SH8nFcDj9HVbLpYIfg1p5lAyM9T4cH2lwtu2fLbozC/bq+HUUOIFxhX/LP0/GmlqPHT4tQ==}
+    engines: {node: '>=8.12'}
 
   esbuild@0.18.20:
     resolution: {integrity: sha512-ceqxoedUrcayh7Y7ZX6NdbbDzGROiyVBgC4PriJThBKSVPWnnFHZAkfI1lJT8QFkOwH4qOS2SJkS4wvpGl8BpA==}
@@ -1745,6 +1752,10 @@ snapshots:
       once: 1.4.0
 
   entities@4.5.0: {}
+
+  envalid@8.0.0:
+    dependencies:
+      tslib: 2.6.2
 
   esbuild@0.18.20:
     optionalDependencies:

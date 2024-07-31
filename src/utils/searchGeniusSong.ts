@@ -1,5 +1,7 @@
+import env from "./env";
+
 export default async function (search: string) {
-  const ACCESS_TOKEN = process.env.GENIUS_ACCESS_TOKEN;
+  const ACCESS_TOKEN = env.GENIUS_ACCESS_TOKEN;
 
   const res = await fetch(
     `https://api.genius.com/search?q=${search}&access_token=${ACCESS_TOKEN}`

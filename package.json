@@ -24,6 +24,7 @@
     "cheerio": "1.0.0-rc.12",
     "commandkit": "^0.1.10",
     "discord.js": "^14.14.1",
+    "envalid": "^8.0.0",
     "extensionless": "^1.9.6",
     "pino": "^8.19.0",
     "pino-pretty": "^10.3.1"

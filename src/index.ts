@@ -2,6 +2,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import { Client, GatewayIntentBits } from "discord.js";
 import { CommandKit } from "commandkit";
+import env from "./utils/env";
 
 const client = new Client({
   intents: [
@@ -22,4 +23,4 @@ new CommandKit({
   bulkRegister: true,
 });
 
-client.login(process.env.BOT_TOKEN);
+client.login(env.BOT_TOKEN);
