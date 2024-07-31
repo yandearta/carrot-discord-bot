@@ -4,6 +4,7 @@ import type { SlashCommandProps } from "commandkit";
 import { errorEmbed } from "@/utils/statusEmbed";
 import formatNumber from "@/utils/formatNumber";
 import logger from "@/utils/logger";
+import env from "@/utils/env";
 
 export const data = new SlashCommandBuilder()
   .setName("github")
@@ -59,8 +60,7 @@ export async function run({ interaction }: SlashCommandProps) {
         .setTimestamp()
         .setFooter({
           text: "Data disediakan oleh GitHub",
-          iconURL:
-            "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/github-mark-white.png",
+          iconURL: `${env.STORAGE_URL}/github-mark-white.png`,
         });
     } else {
       embed

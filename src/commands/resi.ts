@@ -4,6 +4,7 @@ import type { SlashCommandProps } from "commandkit";
 import { errorEmbed } from "@/utils/statusEmbed";
 import logger from "@/utils/logger";
 import formatNumber from "@/utils/formatNumber";
+import env from "@/utils/env";
 
 export const data = new SlashCommandBuilder()
   .setName("resi")
@@ -85,14 +86,11 @@ export async function run({ interaction }: SlashCommandProps) {
       .setTitle("Cek Resi SiCepat")
       .setDescription(description)
       .setColor("#d5232b")
-      .setThumbnail(
-        "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/sicepat-logo-red.png"
-      )
+      .setThumbnail(`${env.STORAGE_URL}/sicepat-logo-red.png`)
       .setTimestamp()
       .setFooter({
         text: "Data disediakan oleh SiCepat",
-        iconURL:
-          "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/sicepat-logo-red.png",
+        iconURL: `${env.STORAGE_URL}/sicepat-logo-red.png`,
       });
 
     await interaction.deleteReply();

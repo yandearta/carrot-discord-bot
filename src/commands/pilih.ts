@@ -8,6 +8,7 @@ import { ButtonKit, type SlashCommandProps } from "commandkit";
 
 import { errorEmbed } from "@/utils/statusEmbed";
 import formatNumber from "@/utils/formatNumber";
+import env from "@/utils/env";
 
 export const data = new SlashCommandBuilder()
   .setName("pilih")
@@ -99,9 +100,7 @@ async function sendResults(
 
   const embed = new EmbedBuilder()
     .setTitle("Pemilih Acak!")
-    .setThumbnail(
-      "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/dice.png"
-    )
+    .setThumbnail(`${env.STORAGE_URL}/dice.png`)
     .setDescription(description);
 
   if (isReshuffle) {

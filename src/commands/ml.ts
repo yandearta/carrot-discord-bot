@@ -3,6 +3,7 @@ import type { SlashCommandProps } from "commandkit";
 
 import { errorEmbed } from "@/utils/statusEmbed";
 import logger from "@/utils/logger";
+import env from "@/utils/env";
 
 export const data = new SlashCommandBuilder()
   .setName("ml")
@@ -57,14 +58,11 @@ export async function run({ interaction }: SlashCommandProps) {
           { name: "Zone ID", value: zoneId, inline: true }
         )
         .setColor("#4caf4f")
-        .setThumbnail(
-          "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/mobile-legends.jpg"
-        )
+        .setThumbnail(`${env.STORAGE_URL}/mobile-legends.jpg`)
         .setTimestamp()
         .setFooter({
           text: "Data disediakan oleh Mobile Legends",
-          iconURL:
-            "https://hccpbrwnmejpnfjtipeh.supabase.co/storage/v1/object/public/carrot/mobile-legends.jpg",
+          iconURL: `${env.STORAGE_URL}/mobile-legends.jpg`,
         });
     } else {
       embed
